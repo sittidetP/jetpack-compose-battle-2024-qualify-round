@@ -72,29 +72,11 @@ fun Qualify2Screen() {
                             .clip(RoundedCornerShape(16.dp))
                             .padding(top = 32.dp),
                         painter = painterResource(id = R.drawable.img_qualify_2_onboard),
-                        contentDescription = ""
+                        contentDescription = null
                     )
                 }
                 IndicatorsGroup()
-                Box(
-                    modifier = Modifier.background(
-                        color = MaterialTheme.colorScheme.primaryContainer
-                    )
-                ) {
-                    Button(
-                        modifier = Modifier
-                            .padding(horizontal = 80.dp, vertical = 31.dp)
-                            .width(251.dp)
-                            .height(40.dp),
-                        onClick = { },
-                        contentPadding = PaddingValues(horizontal = 24.dp, vertical = 10.dp)
-                    ) {
-                        Text(
-                            text = "Next",
-                            style = MaterialTheme.typography.labelLarge
-                        )
-                    }
-                }
+                NextButton()
             }
         }
     }
@@ -121,6 +103,27 @@ fun IndicatorsGroup() = Row (
     Indicator()
     IndicatorCurrent()
     Indicator()
+}
+
+@Composable
+fun NextButton() = Box(
+    modifier = Modifier.background(
+        color = MaterialTheme.colorScheme.primaryContainer
+    )
+) {
+    Button(
+        modifier = Modifier
+            .padding(horizontal = 80.dp, vertical = 31.dp)
+            .fillMaxWidth()
+            .height(40.dp),
+        onClick = { },
+        contentPadding = PaddingValues(horizontal = 24.dp, vertical = 10.dp)
+    ) {
+        Text(
+            text = "Next",
+            style = MaterialTheme.typography.labelLarge
+        )
+    }
 }
 
 @Composable
