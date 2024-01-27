@@ -1,6 +1,5 @@
 package com.github.thailandandroiddeveloper.common.ui.screen.qualify1
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -13,34 +12,24 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Shapes
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.github.thailandandroiddeveloper.common.R
 import com.github.thailandandroiddeveloper.common.ui.preview.Pixel7
 import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
@@ -49,77 +38,34 @@ import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
 fun Qualify1Screen() {
     Scaffold(
         containerColor = MaterialTheme.colorScheme.onPrimary,
-    ) {padding ->
-        Column (modifier = Modifier.padding(padding)) {
+    ) { padding ->
+        Column(modifier = Modifier.padding(padding)) {
             CustomTopAppBar()
-            Box(
-                modifier = Modifier.padding(all = 16.dp),
-                contentAlignment = Alignment.BottomCenter
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.img_qualify_1_profile),
-                    contentDescription = "",
-                    modifier = Modifier
-                        .width(379.dp)
-                        .height(762.dp)
-                        .clip(shape = RoundedCornerShape(16.dp))
-                )
+            Box(contentAlignment = Alignment.BottomCenter) {
                 Box(
                     modifier = Modifier
-                        .alpha(0.75f)
-                        .background(
-                            color = MaterialTheme.colorScheme.primary,
-                            shape = RoundedCornerShape(
-                                bottomStart = 16.dp, bottomEnd = 16.dp
-                            )
-                        )
+                        .padding(all = 16.dp)
+                        .clip(RoundedCornerShape(16.dp)),
+                    contentAlignment = Alignment.BottomCenter
                 ) {
-                    Box(
-                        modifier = Modifier.padding(
-                            start = 20.dp, top = 20.dp, bottom = 40.dp, end = 20.dp
-                        )
-                    ) {
-                        Column (verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                            Text(
-                                text = "John Doe",
-                                style = MaterialTheme.typography.headlineMedium,
-                                color = MaterialTheme.colorScheme.onPrimary
-                            )
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Icon(
-                                    modifier = Modifier
-                                        .padding(end = 8.dp)
-                                        .size(16.dp),
-                                    painter = painterResource(id = R.drawable.ic_qualify_1_gender_male),
-                                    contentDescription = "",
-                                    tint = MaterialTheme.colorScheme.onPrimary
-                                )
-                                Text(
-                                    text = "Male",
-                                    style = MaterialTheme.typography.bodyMedium,
-                                    color = MaterialTheme.colorScheme.onPrimary
-                                )
-                            }
-                            Text(
-                                text = "Lorem ipsum dolor sit amet, cd nulla lacinia, quis fringilla lorem imperdiet. Proin in quam vel odio iaculis fringilla.",
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = MaterialTheme.colorScheme.onPrimary
-                            )
-                        }
-                    }
+                    ProfileImage()
+                    ProfileDescriptionBox()
                 }
-                Row (
+                Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 48.dp)
-                        .offset(y = 24.dp)
-                    ,
+                        .padding(horizontal = 64.dp)
+                        .offset(y = 8.dp),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    CustomButton(color = MaterialTheme.colorScheme.errorContainer, resId = R.drawable.ic_qualify_1_thumb_down)
-                    CustomButton(color = MaterialTheme.colorScheme.primaryContainer, resId = R.drawable.ic_qualify_1_thumb_up)
+                    CustomButton(
+                        color = MaterialTheme.colorScheme.errorContainer,
+                        resId = R.drawable.ic_qualify_1_thumb_down
+                    )
+                    CustomButton(
+                        color = MaterialTheme.colorScheme.primaryContainer,
+                        resId = R.drawable.ic_qualify_1_thumb_up
+                    )
                 }
             }
         }
@@ -148,17 +94,75 @@ fun CustomTopAppBar() = TopAppBar(
 )
 
 @Composable
+fun ProfileImage() = Image(
+    painter = painterResource(id = R.drawable.img_qualify_1_profile),
+    contentDescription = "",
+    modifier = Modifier
+        .height(762.dp)
+        .clip(shape = RoundedCornerShape(16.dp))
+)
+
+@Composable
+fun ProfileDescriptionBox() = Box(
+    modifier = Modifier
+        .background(
+            color = MaterialTheme.colorScheme.primary.copy(
+                alpha = 0.75f
+            ),
+            shape = RoundedCornerShape(
+                bottomStart = 16.dp, bottomEnd = 16.dp
+            ),
+        )
+) {
+    Column(
+        modifier = Modifier.padding(
+            start = 20.dp, top = 20.dp, bottom = 40.dp, end = 20.dp
+        ),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        Text(
+            text = "John Doe",
+            style = MaterialTheme.typography.headlineMedium,
+            color = MaterialTheme.colorScheme.onPrimary
+        )
+        Row(
+            verticalAlignment = Alignment.Top,
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Icon(
+                modifier = Modifier.size(16.dp),
+                painter = painterResource(id = R.drawable.ic_qualify_1_gender_male),
+                contentDescription = "",
+                tint = MaterialTheme.colorScheme.onPrimary
+            )
+            Text(
+                text = "Male",
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onPrimary
+            )
+        }
+        Text(
+            text = "Lorem ipsum dolor sit amet, cd nulla lacinia, quis fringilla lorem imperdiet. Proin in quam vel odio iaculis fringilla.",
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onPrimary
+        )
+    }
+}
+
+@Composable
 fun CustomButton(color: Color, resId: Int) = Button(
+    modifier = Modifier.size(width = 120.dp, height = 48.dp),
     colors = ButtonDefaults.buttonColors(
         containerColor = color
     ),
     contentPadding = PaddingValues(horizontal = 48.dp, vertical = 12.dp),
-    onClick = {  },
+    onClick = { },
 ) {
     Image(
         modifier = Modifier.size(24.dp),
         painter = painterResource(id = resId),
-        contentDescription = null)
+        contentDescription = null
+    )
 }
 
 // region Read-only because we use this to process your score.
