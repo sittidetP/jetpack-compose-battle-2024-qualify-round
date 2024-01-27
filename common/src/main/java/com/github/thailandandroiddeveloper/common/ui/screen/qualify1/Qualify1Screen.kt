@@ -53,9 +53,7 @@ fun Qualify1Screen() {
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer
                 ),
-                title = {
-
-                },
+                title = {},
                 navigationIcon = {
                     Image(
                         painter = painterResource(id = R.drawable.ic_qualify_1_menu),
