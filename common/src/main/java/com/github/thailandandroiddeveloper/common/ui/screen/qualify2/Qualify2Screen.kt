@@ -62,7 +62,7 @@ fun RefineSkipButton() = Row(
 
 @Composable
 fun SkipButton() = TextButton(
-    modifier = Modifier.padding(top = 4.dp, end = 8.dp),
+    modifier = Modifier.padding(top = 2.dp, end = 8.dp),
     onClick = {}
 ) {
     Text(
