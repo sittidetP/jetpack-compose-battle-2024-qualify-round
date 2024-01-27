@@ -46,47 +46,9 @@ fun Qualify3Screen() {
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             CustomTopBar()
-            LazyRow(
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
-                modifier = Modifier.padding(start = 16.dp),
-                content = {
-                    item {
-                        GalleryImage(
-                            resId = R.drawable.img_qualify_3_photo_1,
-                            borderColor = MaterialTheme.colorScheme.primary
-                        )
-                    }
-                    item {
-                        GalleryImage(
-                            resId = R.drawable.img_qualify_3_photo_2,
-                            borderColor = MaterialTheme.colorScheme.primaryContainer
-                        )
-                    }
-                    item {
-                        GalleryImage(
-                            resId = R.drawable.img_qualify_3_photo_3,
-                            borderColor = MaterialTheme.colorScheme.primaryContainer
-                        )
-                    }
-                })
-            Row(
-                modifier = Modifier.padding(start = 16.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                TagPill(text = "Tag 1", color = MaterialTheme.colorScheme.primary)
-                TagPill(text = "Tag 2", color = MaterialTheme.colorScheme.outline)
-                TagPill(text = "Tag 3", color = MaterialTheme.colorScheme.outline)
-                TagPill(text = "Tag 4", color = MaterialTheme.colorScheme.outline)
-            }
-            Column(
-                modifier = Modifier.padding(horizontal = 16.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                CustomCard("Duis dignissim pulvinar lectus imperdiet tempus. Curabitur fringilla commodo consectetur. Sed congue blandit nibh.")
-                CustomCard("Morbi sed sagittis justo, at pulvinar ipsum. Praesent massa metus, interdum at suscipit a, interdum vel orci. Pellentesque in sapien. Integer faucibus mauris ac luctus aliquam accumsan.")
-                CustomCard("Duis dignissim pulvinar lectus imperdiet tempus. Curabitur fringilla commodo.")
-                CustomCard("Ut hendrerit neque nec accumsan hendrerit. Fusce lobortis rhoncus erat, a blandit nibh molestie vel. Cras commodo ligula ex, vitae venenatis lacus facilisis eget.")
-            }
+            CarouselGallery()
+            TagPillsGroup()
+            CustomCardsGroup()
         }
     }
 }
@@ -126,6 +88,32 @@ fun CustomTopBar() = TopAppBar(
 )
 
 @Composable
+fun CarouselGallery() = LazyRow(
+    horizontalArrangement = Arrangement.spacedBy(16.dp),
+    modifier = Modifier.padding(start = 16.dp),
+    content = {
+        item {
+            GalleryImage(
+                resId = R.drawable.img_qualify_3_photo_1,
+                borderColor = MaterialTheme.colorScheme.primary
+            )
+        }
+        item {
+            GalleryImage(
+                resId = R.drawable.img_qualify_3_photo_2,
+                borderColor = MaterialTheme.colorScheme.primaryContainer
+            )
+        }
+        item {
+            GalleryImage(
+                resId = R.drawable.img_qualify_3_photo_3,
+                borderColor = MaterialTheme.colorScheme.primaryContainer
+            )
+        }
+    }
+)
+
+@Composable
 fun GalleryImage(resId: Int, borderColor: Color) {
     val roundedCornerShape = RoundedCornerShape(16.dp)
     return Image(
@@ -144,6 +132,17 @@ fun GalleryImage(resId: Int, borderColor: Color) {
 }
 
 @Composable
+fun TagPillsGroup() = Row(
+    modifier = Modifier.padding(start = 16.dp),
+    horizontalArrangement = Arrangement.spacedBy(8.dp)
+) {
+    TagPill(text = "Tag 1", color = MaterialTheme.colorScheme.primary)
+    TagPill(text = "Tag 2", color = MaterialTheme.colorScheme.outline)
+    TagPill(text = "Tag 3", color = MaterialTheme.colorScheme.outline)
+    TagPill(text = "Tag 4", color = MaterialTheme.colorScheme.outline)
+}
+
+@Composable
 fun TagPill(text: String, color: Color) = Box(
     modifier = Modifier
         .size(width = 68.dp, height = 32.dp)
@@ -159,6 +158,17 @@ fun TagPill(text: String, color: Color) = Box(
         color = color,
         style = MaterialTheme.typography.labelLarge
     )
+}
+
+@Composable
+fun CustomCardsGroup() = Column(
+    modifier = Modifier.padding(horizontal = 16.dp),
+    verticalArrangement = Arrangement.spacedBy(16.dp)
+) {
+    CustomCard("Duis dignissim pulvinar lectus imperdiet tempus. Curabitur fringilla commodo consectetur. Sed congue blandit nibh.")
+    CustomCard("Morbi sed sagittis justo, at pulvinar ipsum. Praesent massa metus, interdum at suscipit a, interdum vel orci. Pellentesque in sapien. Integer faucibus mauris ac luctus aliquam accumsan.")
+    CustomCard("Duis dignissim pulvinar lectus imperdiet tempus. Curabitur fringilla commodo.")
+    CustomCard("Ut hendrerit neque nec accumsan hendrerit. Fusce lobortis rhoncus erat, a blandit nibh molestie vel. Cras commodo ligula ex, vitae venenatis lacus facilisis eget.")
 }
 
 @Composable
