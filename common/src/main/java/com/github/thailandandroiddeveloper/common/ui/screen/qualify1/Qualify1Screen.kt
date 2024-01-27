@@ -9,9 +9,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
@@ -32,6 +34,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -42,31 +45,13 @@ import com.github.thailandandroiddeveloper.common.R
 import com.github.thailandandroiddeveloper.common.ui.preview.Pixel7
 import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Qualify1Screen() {
     Scaffold(
         containerColor = MaterialTheme.colorScheme.onPrimary,
     ) {padding ->
         Column (modifier = Modifier.padding(padding)) {
-            TopAppBar(
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer
-                ),
-                title = {},
-                navigationIcon = {
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_qualify_1_menu),
-                        contentDescription = ""
-                    )
-                },
-                actions = {
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_qualify_1_profile),
-                        contentDescription = ""
-                    )
-                }
-            )
+            CustomTopAppBar()
             Box(
                 modifier = Modifier.padding(all = 16.dp),
                 contentAlignment = Alignment.BottomCenter
@@ -75,9 +60,9 @@ fun Qualify1Screen() {
                     painter = painterResource(id = R.drawable.img_qualify_1_profile),
                     contentDescription = "",
                     modifier = Modifier
-                        .clip(
-                            shape = RoundedCornerShape(16.dp)
-                        )
+                        .width(379.dp)
+                        .height(762.dp)
+                        .clip(shape = RoundedCornerShape(16.dp))
                 )
                 Box(
                     modifier = Modifier
@@ -94,16 +79,14 @@ fun Qualify1Screen() {
                             start = 20.dp, top = 20.dp, bottom = 40.dp, end = 20.dp
                         )
                     ) {
-                        Column {
+                        Column (verticalArrangement = Arrangement.spacedBy(8.dp)) {
                             Text(
-                                modifier = Modifier.padding(bottom = 8.dp),
                                 text = "John Doe",
                                 style = MaterialTheme.typography.headlineMedium,
                                 color = MaterialTheme.colorScheme.onPrimary
                             )
                             Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                                modifier = Modifier.padding(bottom = 8.dp)
+                                verticalAlignment = Alignment.CenterVertically
                             ) {
                                 Icon(
                                     modifier = Modifier
@@ -135,35 +118,47 @@ fun Qualify1Screen() {
                     ,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    Button(
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = MaterialTheme.colorScheme.errorContainer
-                        ),
-                        onClick = {  },
-                        contentPadding = PaddingValues(horizontal = 48.dp, vertical = 12.dp)
-                    ) {
-                        Image(
-                            modifier = Modifier.size(24.dp),
-                            painter = painterResource(id = R.drawable.ic_qualify_1_thumb_down),
-                            contentDescription = "")
-                    }
-
-                    Button(
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = MaterialTheme.colorScheme.primaryContainer
-                        ),
-                        onClick = {  },
-                        contentPadding = PaddingValues(horizontal = 48.dp, vertical = 12.dp)
-                    ) {
-                        Image(
-                            modifier = Modifier.size(24.dp),
-                            painter = painterResource(id = R.drawable.ic_qualify_1_thumb_up),
-                            contentDescription = "")
-                    }
+                    CustomButton(color = MaterialTheme.colorScheme.errorContainer, resId = R.drawable.ic_qualify_1_thumb_down)
+                    CustomButton(color = MaterialTheme.colorScheme.primaryContainer, resId = R.drawable.ic_qualify_1_thumb_up)
                 }
             }
         }
     }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun CustomTopAppBar() = TopAppBar(
+    colors = TopAppBarDefaults.topAppBarColors(
+        containerColor = MaterialTheme.colorScheme.primaryContainer
+    ),
+    title = {},
+    navigationIcon = {
+        Image(
+            painter = painterResource(id = R.drawable.ic_qualify_1_menu),
+            contentDescription = ""
+        )
+    },
+    actions = {
+        Image(
+            painter = painterResource(id = R.drawable.ic_qualify_1_profile),
+            contentDescription = ""
+        )
+    }
+)
+
+@Composable
+fun CustomButton(color: Color, resId: Int) = Button(
+    colors = ButtonDefaults.buttonColors(
+        containerColor = color
+    ),
+    contentPadding = PaddingValues(horizontal = 48.dp, vertical = 12.dp),
+    onClick = {  },
+) {
+    Image(
+        modifier = Modifier.size(24.dp),
+        painter = painterResource(id = resId),
+        contentDescription = null)
 }
 
 // region Read-only because we use this to process your score.
