@@ -42,131 +42,129 @@ import com.github.thailandandroiddeveloper.common.R
 import com.github.thailandandroiddeveloper.common.ui.preview.Pixel7
 import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Qualify1Screen() {
-    Surface {
-        Scaffold(containerColor = MaterialTheme.colorScheme.onPrimary) {
-            Column {
-                TopAppBar(
-                    colors = TopAppBarDefaults.topAppBarColors(
-                        containerColor = MaterialTheme.colorScheme.primaryContainer
-                    ),
-                    title = {
+    Scaffold(
+        containerColor = MaterialTheme.colorScheme.onPrimary,
+    ) {padding ->
+        Column (modifier = Modifier.padding(padding)) {
+            TopAppBar(
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer
+                ),
+                title = {
 
-                    },
-                    navigationIcon = {
-                        Image(
-                            painter = painterResource(id = R.drawable.ic_qualify_1_menu),
-                            contentDescription = ""
+                },
+                navigationIcon = {
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_qualify_1_menu),
+                        contentDescription = ""
+                    )
+                },
+                actions = {
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_qualify_1_profile),
+                        contentDescription = ""
+                    )
+                }
+            )
+            Box(
+                modifier = Modifier.padding(all = 16.dp),
+                contentAlignment = Alignment.BottomCenter
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.img_qualify_1_profile),
+                    contentDescription = "",
+                    modifier = Modifier
+                        .clip(
+                            shape = RoundedCornerShape(16.dp)
                         )
-                    },
-                    actions = {
-                        Image(
-                            painter = painterResource(id = R.drawable.ic_qualify_1_profile),
-                            contentDescription = ""
-                        )
-                    }
                 )
                 Box(
-                    modifier = Modifier.padding(all = 16.dp),
-                    contentAlignment = Alignment.BottomCenter
+                    modifier = Modifier
+                        .alpha(0.75f)
+                        .background(
+                            color = MaterialTheme.colorScheme.primary,
+                            shape = RoundedCornerShape(
+                                bottomStart = 16.dp, bottomEnd = 16.dp
+                            )
+                        )
                 ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.img_qualify_1_profile),
-                        contentDescription = "",
-                        modifier = Modifier
-                            .clip(
-                                shape = RoundedCornerShape(16.dp)
-                            )
-                    )
                     Box(
-                        modifier = Modifier
-                            .alpha(0.75f)
-                            .background(
-                                color = MaterialTheme.colorScheme.primary,
-                                shape = RoundedCornerShape(
-                                    bottomStart = 16.dp, bottomEnd = 16.dp
-                                )
-                            )
+                        modifier = Modifier.padding(
+                            start = 20.dp, top = 20.dp, bottom = 40.dp, end = 20.dp
+                        )
                     ) {
-                        Box(
-                            modifier = Modifier.padding(
-                                start = 20.dp, top = 20.dp, bottom = 40.dp, end = 20.dp
+                        Column {
+                            Text(
+                                modifier = Modifier.padding(bottom = 8.dp),
+                                text = "John Doe",
+                                style = MaterialTheme.typography.headlineMedium,
+                                color = MaterialTheme.colorScheme.onPrimary
                             )
-                        ) {
-                            Column {
-                                Text(
-                                    modifier = Modifier.padding(bottom = 8.dp),
-                                    text = "John Doe",
-                                    style = MaterialTheme.typography.headlineMedium,
-                                    color = MaterialTheme.colorScheme.onPrimary
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                modifier = Modifier.padding(bottom = 8.dp)
+                            ) {
+                                Icon(
+                                    modifier = Modifier
+                                        .padding(end = 8.dp)
+                                        .size(16.dp),
+                                    painter = painterResource(id = R.drawable.ic_qualify_1_gender_male),
+                                    contentDescription = "",
+                                    tint = MaterialTheme.colorScheme.onPrimary
                                 )
-                                Row(
-                                    verticalAlignment = Alignment.CenterVertically,
-                                    modifier = Modifier.padding(bottom = 8.dp)
-                                ) {
-                                    Icon(
-                                        modifier = Modifier
-                                            .padding(end = 8.dp)
-                                            .size(16.dp),
-                                        painter = painterResource(id = R.drawable.ic_qualify_1_gender_male),
-                                        contentDescription = "",
-                                        tint = MaterialTheme.colorScheme.onPrimary
-                                    )
-                                    Text(
-                                        text = "Male",
-                                        style = MaterialTheme.typography.bodyMedium,
-                                        color = MaterialTheme.colorScheme.onPrimary
-                                    )
-                                }
                                 Text(
-                                    text = "Lorem ipsum dolor sit amet, cd nulla lacinia, quis fringilla lorem imperdiet. Proin in quam vel odio iaculis fringilla.",
+                                    text = "Male",
                                     style = MaterialTheme.typography.bodyMedium,
                                     color = MaterialTheme.colorScheme.onPrimary
                                 )
                             }
+                            Text(
+                                text = "Lorem ipsum dolor sit amet, cd nulla lacinia, quis fringilla lorem imperdiet. Proin in quam vel odio iaculis fringilla.",
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onPrimary
+                            )
                         }
                     }
-                    Row (
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 48.dp)
-                            .offset(y = 24.dp)
-                        ,
-                        horizontalArrangement = Arrangement.SpaceBetween
+                }
+                Row (
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 48.dp)
+                        .offset(y = 24.dp)
+                    ,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Button(
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = MaterialTheme.colorScheme.errorContainer
+                        ),
+                        onClick = {  },
+                        contentPadding = PaddingValues(horizontal = 48.dp, vertical = 12.dp)
                     ) {
-                        Button(
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = MaterialTheme.colorScheme.errorContainer
-                            ),
-                            onClick = {  },
-                            contentPadding = PaddingValues(horizontal = 48.dp, vertical = 12.dp)
-                        ) {
-                            Image(
-                                modifier = Modifier.size(24.dp),
-                                painter = painterResource(id = R.drawable.ic_qualify_1_thumb_down),
-                                contentDescription = "")
-                        }
+                        Image(
+                            modifier = Modifier.size(24.dp),
+                            painter = painterResource(id = R.drawable.ic_qualify_1_thumb_down),
+                            contentDescription = "")
+                    }
 
-                        Button(
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = MaterialTheme.colorScheme.primaryContainer
-                            ),
-                            onClick = {  },
-                            contentPadding = PaddingValues(horizontal = 48.dp, vertical = 12.dp)
-                        ) {
-                            Image(
-                                modifier = Modifier.size(24.dp),
-                                painter = painterResource(id = R.drawable.ic_qualify_1_thumb_up),
-                                contentDescription = "")
-                        }
+                    Button(
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = MaterialTheme.colorScheme.primaryContainer
+                        ),
+                        onClick = {  },
+                        contentPadding = PaddingValues(horizontal = 48.dp, vertical = 12.dp)
+                    ) {
+                        Image(
+                            modifier = Modifier.size(24.dp),
+                            painter = painterResource(id = R.drawable.ic_qualify_1_thumb_up),
+                            contentDescription = "")
                     }
                 }
             }
         }
-
     }
 }
 
