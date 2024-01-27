@@ -138,7 +138,7 @@ fun GalleryImage(resId: Int, borderColor: Color) {
             .width(160.dp)
             .height(320.dp)
             .border(
-                width = 1.dp,
+                width = 2.dp,
                 color = borderColor,
                 shape = roundedCornerShape
             )
@@ -167,7 +167,7 @@ fun TagPill(text: String, color: Color) = Box(
 
 @Composable
 fun CustomCard(description: String) = Card(
-    modifier = Modifier.padding(horizontal = 16.dp),
+    modifier = Modifier.padding(horizontal = 16.dp).height(96.dp),
     colors = CardDefaults.cardColors(
         containerColor = MaterialTheme.colorScheme.surface
     ),
@@ -178,9 +178,8 @@ fun CustomCard(description: String) = Card(
         modifier = Modifier.padding(16.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-
         Image(
-            modifier = Modifier.clip(shape = CircleShape),
+            modifier = Modifier.size(48.dp).clip(shape = CircleShape),
             painter = painterResource(id = R.drawable.img_qualify_3_sender),
             contentDescription = null
         )
