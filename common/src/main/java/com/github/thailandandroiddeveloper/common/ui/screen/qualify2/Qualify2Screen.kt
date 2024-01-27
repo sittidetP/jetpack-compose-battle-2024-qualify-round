@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -22,6 +23,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -46,15 +48,7 @@ fun Qualify2Screen() {
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.End
                 ) {
-                    TextButton(
-                        modifier = Modifier.padding(top = 8.dp, end = 8.dp),
-                        onClick = {}
-                    ) {
-                        Text(
-                            text = "Skip",
-                            style = MaterialTheme.typography.labelLarge
-                        )
-                    }
+                    SkipButton()
                 }
                 Column(
                     modifier = Modifier
@@ -74,21 +68,14 @@ fun Qualify2Screen() {
                         textAlign = TextAlign.Center
                     )
                     Image(
-                        modifier = Modifier.padding(top = 32.dp),
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(16.dp))
+                            .padding(top = 32.dp),
                         painter = painterResource(id = R.drawable.img_qualify_2_onboard),
                         contentDescription = ""
                     )
                 }
-                Row (
-                    modifier = Modifier.padding(bottom = 32.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    Indicator()
-                    Indicator()
-                    Indicator()
-                    IndicatorCurrent()
-                    Indicator()
-                }
+                IndicatorsGroup()
                 Box(
                     modifier = Modifier.background(
                         color = MaterialTheme.colorScheme.primaryContainer
@@ -111,6 +98,29 @@ fun Qualify2Screen() {
             }
         }
     }
+}
+
+@Composable
+fun SkipButton() = TextButton(
+    modifier = Modifier.padding(top = 8.dp, end = 8.dp),
+    onClick = {}
+) {
+    Text(
+        text = "Skip",
+        style = MaterialTheme.typography.labelLarge
+    )
+}
+
+@Composable
+fun IndicatorsGroup() = Row (
+    modifier = Modifier.padding(bottom = 32.dp),
+    horizontalArrangement = Arrangement.spacedBy(8.dp)
+) {
+    Indicator()
+    Indicator()
+    Indicator()
+    IndicatorCurrent()
+    Indicator()
 }
 
 @Composable
