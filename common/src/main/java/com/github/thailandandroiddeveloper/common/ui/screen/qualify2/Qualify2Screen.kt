@@ -101,7 +101,7 @@ fun TutorialTexts() = Column(
 ) {
     Text(
         text = "Lorem ipsum dolor sit amet",
-        style = MaterialTheme.typography.headlineSmall
+        style = MaterialTheme.typography.headlineSmall,
     )
     Text(
         text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas dictum lacinia. Integer arcu\nneque, porttitor ac metus quis, iaculis molestie magna. Vivamus molestie justo sed nulla lacinia,\nquis fringilla lorem imperdiet. Proin in quam vel odio iaculis fringilla",
