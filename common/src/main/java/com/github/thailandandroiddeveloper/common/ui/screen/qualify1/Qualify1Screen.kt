@@ -51,22 +51,7 @@ fun Qualify1Screen() {
                     ProfileImage()
                     ProfileDescriptionBox()
                 }
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 64.dp)
-                        .offset(y = 8.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    CustomButton(
-                        color = MaterialTheme.colorScheme.errorContainer,
-                        resId = R.drawable.ic_qualify_1_thumb_down
-                    )
-                    CustomButton(
-                        color = MaterialTheme.colorScheme.primaryContainer,
-                        resId = R.drawable.ic_qualify_1_thumb_up
-                    )
-                }
+                CustomButtonsGroup()
             }
         }
     }
@@ -147,6 +132,24 @@ fun ProfileDescriptionBox() = Box(
             color = MaterialTheme.colorScheme.onPrimary
         )
     }
+}
+
+@Composable
+fun CustomButtonsGroup() = Row(
+    modifier = Modifier
+        .fillMaxWidth()
+        .padding(horizontal = 64.dp)
+        .offset(y = 8.dp),
+    horizontalArrangement = Arrangement.SpaceBetween
+) {
+    CustomButton(
+        color = MaterialTheme.colorScheme.errorContainer,
+        resId = R.drawable.ic_qualify_1_thumb_down
+    )
+    CustomButton(
+        color = MaterialTheme.colorScheme.primaryContainer,
+        resId = R.drawable.ic_qualify_1_thumb_up
+    )
 }
 
 @Composable

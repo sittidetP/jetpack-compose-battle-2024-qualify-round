@@ -182,7 +182,6 @@ fun CustomCard(description: String) = Card(
             contentDescription = null
         )
         Column(
-            modifier = Modifier.width(291.dp)
         ) {
             Text(
                 text = "Lorem Ipsum",
