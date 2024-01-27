@@ -28,13 +28,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.github.thailandandroiddeveloper.common.R
 import com.github.thailandandroiddeveloper.common.ui.preview.Pixel7
 import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
 
 @Composable
 fun Qualify2Screen() {
-    Scaffold (containerColor = MaterialTheme.colorScheme.onPrimary) { paddingValues ->
+    Scaffold(
+        containerColor = MaterialTheme.colorScheme.onPrimary
+    ) { paddingValues ->
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -44,7 +47,7 @@ fun Qualify2Screen() {
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                Row (
+                Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.End
                 ) {
@@ -53,29 +56,23 @@ fun Qualify2Screen() {
                 Column(
                     modifier = Modifier
                         .padding(horizontal = 32.dp)
-                        .padding(bottom = 16.dp)
-                    ,
-                    verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
-                    horizontalAlignment = Alignment.CenterHorizontally,
+                        .padding(bottom = 16.dp),
+                    verticalArrangement = Arrangement.spacedBy(32.dp, Alignment.CenterVertically),
                 ) {
-                    Text(
-                        text = "Lorem ipsum dolor sit amet",
-                        style = MaterialTheme.typography.headlineSmall
-                    )
-                    Text(
-                        text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas dictum lacinia. Integer arcu neque, porttitor ac metus quis, iaculis molestie magna. Vivamus molestie justo sed nulla lacinia, quis fringilla lorem imperdiet. Proin in quam vel odio iaculis fringilla",
-                        style = MaterialTheme.typography.bodyMedium,
-                        textAlign = TextAlign.Center
-                    )
+                    TutorialTexts()
                     Image(
                         modifier = Modifier
-                            .clip(RoundedCornerShape(16.dp))
-                            .padding(top = 32.dp),
+                            .clip(RoundedCornerShape(16.dp)),
                         painter = painterResource(id = R.drawable.img_qualify_2_onboard),
                         contentDescription = null
                     )
+                    Row (
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        IndicatorsGroup()
+                    }
                 }
-                IndicatorsGroup()
                 NextButton()
             }
         }
@@ -94,8 +91,23 @@ fun SkipButton() = TextButton(
 }
 
 @Composable
-fun IndicatorsGroup() = Row (
-    modifier = Modifier.padding(bottom = 32.dp),
+fun TutorialTexts() = Column(
+    verticalArrangement = Arrangement.spacedBy(16.dp),
+    horizontalAlignment = Alignment.CenterHorizontally,
+) {
+    Text(
+        text = "Lorem ipsum dolor sit amet",
+        style = MaterialTheme.typography.headlineSmall
+    )
+    Text(
+        text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas dictum lacinia. Integer arcu neque, porttitor ac metus quis, iaculis molestie magna. Vivamus molestie justo sed nulla lacinia, quis fringilla lorem imperdiet. Proin in quam vel odio iaculis fringilla",
+        style = MaterialTheme.typography.bodyMedium,
+        textAlign = TextAlign.Center
+    )
+}
+
+@Composable
+fun IndicatorsGroup() = Row(
     horizontalArrangement = Arrangement.spacedBy(8.dp)
 ) {
     Indicator()
@@ -137,12 +149,13 @@ fun Indicator() = Box(
 )
 
 @Composable
-fun IndicatorCurrent() = Box(modifier = Modifier
-    .size(width = 32.dp, height = 16.dp)
-    .background(
-        color = MaterialTheme.colorScheme.primary,
-        shape = CircleShape
-    )
+fun IndicatorCurrent() = Box(
+    modifier = Modifier
+        .size(width = 32.dp, height = 16.dp)
+        .background(
+            color = MaterialTheme.colorScheme.primary,
+            shape = CircleShape
+        )
 )
 
 // region Read-only because we use this to process your score.
