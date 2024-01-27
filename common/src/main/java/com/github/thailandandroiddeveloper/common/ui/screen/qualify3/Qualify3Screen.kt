@@ -2,12 +2,10 @@ package com.github.thailandandroiddeveloper.common.ui.screen.qualify3
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -22,10 +20,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.ScrollableTabRow
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -40,7 +35,6 @@ import com.github.thailandandroiddeveloper.common.R
 import com.github.thailandandroiddeveloper.common.ui.preview.Pixel7
 import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Qualify3Screen() {
     Scaffold(
@@ -85,6 +79,7 @@ fun Qualify3Screen() {
                 TagPill(text = "Tag 4", color = MaterialTheme.colorScheme.outline)
             }
             Column(
+                modifier = Modifier.padding(horizontal = 16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 CustomCard("Duis dignissim pulvinar lectus imperdiet tempus. Curabitur fringilla commodo consectetur. Sed congue blandit nibh.")
@@ -151,6 +146,7 @@ fun GalleryImage(resId: Int, borderColor: Color) {
 @Composable
 fun TagPill(text: String, color: Color) = Box(
     modifier = Modifier
+        .size(width = 68.dp, height = 32.dp)
         .border(
             width = 1.dp,
             color = color,
@@ -167,7 +163,7 @@ fun TagPill(text: String, color: Color) = Box(
 
 @Composable
 fun CustomCard(description: String) = Card(
-    modifier = Modifier.padding(horizontal = 16.dp).height(96.dp),
+    modifier = Modifier.height(96.dp),
     colors = CardDefaults.cardColors(
         containerColor = MaterialTheme.colorScheme.surface
     ),
@@ -179,18 +175,24 @@ fun CustomCard(description: String) = Card(
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Image(
-            modifier = Modifier.size(48.dp).clip(shape = CircleShape),
+            modifier = Modifier
+                .size(48.dp)
+                .clip(shape = CircleShape),
             painter = painterResource(id = R.drawable.img_qualify_3_sender),
             contentDescription = null
         )
-        Column {
+        Column(
+            modifier = Modifier.width(291.dp)
+        ) {
             Text(
                 text = "Lorem Ipsum",
-                style = MaterialTheme.typography.titleMedium
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.onSurface,
             )
             Text(
                 text = description,
                 style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis
             )
