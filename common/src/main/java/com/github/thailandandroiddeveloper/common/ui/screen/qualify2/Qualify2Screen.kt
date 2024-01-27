@@ -7,12 +7,12 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -28,7 +28,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.github.thailandandroiddeveloper.common.R
 import com.github.thailandandroiddeveloper.common.ui.preview.Pixel7
 import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
@@ -38,56 +37,61 @@ fun Qualify2Screen() {
     Scaffold(
         containerColor = MaterialTheme.colorScheme.onPrimary
     ) { paddingValues ->
-        Box(
+        Column (
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues = paddingValues)
         ) {
-            Column(
-                verticalArrangement = Arrangement.spacedBy(16.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.End
-                ) {
-                    SkipButton()
-                }
-                Column(
-                    modifier = Modifier
-                        .padding(horizontal = 32.dp)
-                        .padding(bottom = 16.dp),
-                    verticalArrangement = Arrangement.spacedBy(32.dp, Alignment.CenterVertically),
-                ) {
-                    TutorialTexts()
-                    Image(
-                        modifier = Modifier
-                            .clip(RoundedCornerShape(16.dp)),
-                        painter = painterResource(id = R.drawable.img_qualify_2_onboard),
-                        contentDescription = null
-                    )
-                    Row (
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Center
-                    ) {
-                        IndicatorsGroup()
-                    }
-                }
-                NextButton()
+            Column (modifier = Modifier.padding(bottom = 48.dp)) {
+                RefineSkipButton()
+                TutorialInfoSection()
             }
+            NextButton()
         }
     }
 }
 
 @Composable
+fun RefineSkipButton() = Row(
+    modifier = Modifier
+        .fillMaxWidth(),
+    horizontalArrangement = Arrangement.End
+) {
+    SkipButton()
+}
+
+@Composable
 fun SkipButton() = TextButton(
-    modifier = Modifier.padding(top = 8.dp, end = 8.dp),
+    modifier = Modifier.padding(top = 4.dp, end = 8.dp),
     onClick = {}
 ) {
     Text(
         text = "Skip",
         style = MaterialTheme.typography.labelLarge
     )
+}
+
+@Composable
+fun TutorialInfoSection() = Column(
+    modifier = Modifier
+        .padding(horizontal = 32.dp)
+        .padding(top = 16.dp),
+    verticalArrangement = Arrangement.spacedBy(32.dp, Alignment.CenterVertically),
+) {
+    TutorialTexts()
+    Image(
+        modifier = Modifier
+            .clip(RoundedCornerShape(16.dp)
+            ),
+        painter = painterResource(id = R.drawable.img_qualify_2_onboard),
+        contentDescription = null,
+    )
+    Row (
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center
+    ) {
+        IndicatorsGroup()
+    }
 }
 
 @Composable
@@ -100,7 +104,7 @@ fun TutorialTexts() = Column(
         style = MaterialTheme.typography.headlineSmall
     )
     Text(
-        text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas dictum lacinia. Integer arcu neque, porttitor ac metus quis, iaculis molestie magna. Vivamus molestie justo sed nulla lacinia, quis fringilla lorem imperdiet. Proin in quam vel odio iaculis fringilla",
+        text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas dictum lacinia. Integer arcu\nneque, porttitor ac metus quis, iaculis molestie magna. Vivamus molestie justo sed nulla lacinia,\nquis fringilla lorem imperdiet. Proin in quam vel odio iaculis fringilla",
         style = MaterialTheme.typography.bodyMedium,
         textAlign = TextAlign.Center
     )
@@ -118,14 +122,17 @@ fun IndicatorsGroup() = Row(
 }
 
 @Composable
-fun NextButton() = Box(
-    modifier = Modifier.background(
+fun NextButton() = Column(
+    modifier = Modifier
+        .fillMaxHeight()
+        .background(
         color = MaterialTheme.colorScheme.primaryContainer
-    )
+    ),
+    verticalArrangement = Arrangement.Center
 ) {
     Button(
         modifier = Modifier
-            .padding(horizontal = 80.dp, vertical = 31.dp)
+            .padding(horizontal = 80.dp)
             .fillMaxWidth()
             .height(40.dp),
         onClick = { },
